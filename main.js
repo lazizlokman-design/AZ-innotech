@@ -617,4 +617,16 @@ async function handleReviewSubmit(e) {
     const review = {
         name,
         rating: selectedRating,
-        comment};
+        comment
+    };
+
+    // مثال: اطبع الـ review في console
+    console.log("Review submitted:", review);
+
+    // إعادة تعيين النموذج إذا موجود
+    const form = document.getElementById('reviewForm');
+    if (form) form.reset();
+
+    // إعادة تعيين التقييم
+    selectedRating = 0;
+}
