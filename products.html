@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - AZ INNOTECH</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loader">
+            <div class="loader-logo">AZ INNOTECH</div>
+            <div class="loader-circuit">
+                <svg viewBox="0 0 100 100">
+                    <path class="circuit-line" d="M20 50 L40 50 L45 40 L55 40 L60 50 L80 50"/>
+                    <path class="circuit-line" d="M50 20 L50 35 L40 45 L40 55 L50 65 L50 80"/>
+                    <circle class="circuit-dot" cx="20" cy="50" r="4"/>
+                    <circle class="circuit-dot" cx="80" cy="50" r="4"/>
+                    <circle class="circuit-dot" cx="50" cy="20" r="4"/>
+                    <circle class="circuit-dot" cx="50" cy="80" r="4"/>
+                    <circle class="circuit-dot" cx="50" cy="50" r="6"/>
+                </svg>
+            </div>
+            <div class="loader-text">Loading...</div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="header-content">
+            <a href="index.html" class="logo-container">
+                <div class="logo-circle" id="siteLogo">
+                    <span class="logo-placeholder">AZ</span>
+                </div>
+                <span class="brand-name"><span>AZ</span> INNOTECH</span>
+            </a>
+            
+            <nav>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="index.html#products" class="nav-link active">Products</a></li>
+                    <li><a href="index.html#services" class="nav-link">Services</a></li>
+                    <li><a href="index.html#reviews" class="nav-link">Reviews</a></li>
+                    <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <div class="nav-actions">
+                <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main style="padding-top: 120px; min-height: 100vh;">
+        <section class="section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-badge">Our Catalog</span>
+                    <h1 class="section-title">All Products</h1>
+                    <p class="section-subtitle">Browse our complete collection of electronics and networking equipment</p>
+                </div>
+                
+                <div class="products-toolbar">
+                    <div class="search-box">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+                        </svg>
+                        <input type="text" id="searchInput" placeholder="Search products...">
+                    </div>
+                    <div class="category-filters" id="categoryFilters">
+                        <button class="filter-btn active" data-category="all">All Products</button>
+                    </div>
+                </div>
+                
+                <div class="products-grid" id="productsGrid">
+                    <!-- Products loaded dynamically -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-bottom" style="border-top: none;">
+            <p>&copy; 2024 AZ INNOTECH. All rights reserved.</p>
+            <p>Innovating Technology</p>
+        </div>
+    </footer>
+
+    <!-- Quick View Modal -->
+    <div class="modal-overlay" id="quickViewModal">
+        <div class="modal" style="max-width: 900px;">
+            <div class="modal-header">
+                <h3 class="modal-title">Product Quick View</h3>
+                <button class="modal-close" onclick="closeQuickView()">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path d="M18 6L6 18M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="quick-view-content" id="quickViewContent"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Reservation Modal -->
+    <div class="modal-overlay" id="reservationModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title">Reserve Product</h3>
+                <button class="modal-close" onclick="closeReservation()">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path d="M18 6L6 18M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="reservationForm">
+                    <input type="hidden" id="reservationProductId">
+                    <div class="form-group">
+                        <label for="customerName">Your Name *</label>
+                        <input type="text" id="customerName" required placeholder="Enter your full name">
+                    </div>
+                    <div class="form-group">
+                        <label for="customerPhone">Phone Number *</label>
+                        <input type="tel" id="customerPhone" required placeholder="+994 50 123 45 67">
+                    </div>
+                    <div class="form-group">
+                        <label for="customerNote">Additional Note (Optional)</label>
+                        <textarea id="customerNote" placeholder="Any special requests..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Submit Reservation</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Image Viewer Modal -->
+    <div class="modal-overlay" id="imageViewerModal" onclick="closeImageViewer()">
+        <button class="modal-close" style="position: absolute; top: 20px; right: 20px; background: var(--bg-card);">
+            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path d="M18 6L6 18M6 6l12 12"/>
+            </svg>
+        </button>
+        <img id="viewerImage" src="" alt="Product Image" style="max-width: 90%; max-height: 90%; border-radius: var(--radius);">
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-storage-compat.js"></script>
+
+    <script src="firebase-config.js"></script>
+    <script src="main.js"></script>
+    <script>
+        // Parse URL params for category filter
+        const urlParams = new URLSearchParams(window.location.search);
+        const categoryParam = urlParams.get('category');
+        
+        document.addEventListener('DOMContentLoaded', async () => {
+            await initializeFirebase();
+            await loadLogo();
+            await loadCategories();
+            await loadProducts();
+            
+            // Apply category filter from URL
+            if (categoryParam) {
+                setTimeout(() => {
+                    const filterBtn = document.querySelector(`.filter-btn[data-category="${categoryParam}"]`);
+                    if (filterBtn) {
+                        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                        filterBtn.classList.add('active');
+                        filterProducts();
+                    }
+                }, 500);
+            }
+            
+            setTimeout(() => {
+                document.getElementById('loadingScreen').classList.add('hidden');
+            }, 800);
+        });
+    </script>
+</body>
+</html>
